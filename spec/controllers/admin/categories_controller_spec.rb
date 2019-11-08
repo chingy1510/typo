@@ -34,6 +34,11 @@ describe Admin::CategoriesController do
     end
   end
 
+  it "test_new_or_edit" do
+    get :new_or_edit
+    assert_response :redirect, :action => 'new_or_edit'
+  end
+
   it "test_update" do
     post :edit, :id => Factory(:category).id
     assert_response :redirect, :action => 'index'

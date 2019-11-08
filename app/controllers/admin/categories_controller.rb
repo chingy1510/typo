@@ -24,8 +24,14 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def new_or_edit
+    # Create a new category if this one doesn't exist.
+    if params[:id] != nil
+      @category = Category.find(params[:id])
+    else
+      @category = Category.new
+    end
+    # Include the newly created category into the find.
     @categories = Category.find(:all)
-    @category = Category.find(params[:id])
     @category.attributes = params[:category]
     if request.post?
       respond_to do |format|
